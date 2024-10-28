@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "departamentos",
+  "info": {
+    "singularName": "departamento",
+    "pluralName": "departamentos",
+    "displayName": "Departamento",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "departamentoName": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
