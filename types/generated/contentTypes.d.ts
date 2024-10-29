@@ -372,7 +372,8 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
-    displayName: 'Category';
+    description: '';
+    displayName: 'CategoryAccesorios';
     pluralName: 'categories';
     singularName: 'category';
   };
@@ -431,11 +432,68 @@ export interface ApiDepartamentoDepartamento
   };
 }
 
+export interface ApiGeneroGenero extends Struct.CollectionTypeSchema {
+  collectionName: 'generos';
+  info: {
+    displayName: 'Genero';
+    pluralName: 'generos';
+    singularName: 'genero';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::genero.genero'
+    > &
+      Schema.Attribute.Private;
+    mainImage: Schema.Attribute.Media<'images'>;
+    nameGenero: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'nameGenero'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMarcaMarca extends Struct.CollectionTypeSchema {
+  collectionName: 'marcas';
+  info: {
+    displayName: 'Marca';
+    pluralName: 'marcas';
+    singularName: 'marca';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::marca.marca'> &
+      Schema.Attribute.Private;
+    mainImage: Schema.Attribute.Media<'images'>;
+    nameMarca: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'nameMarca'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   collectionName: 'products';
   info: {
     description: '';
-    displayName: 'Product';
+    displayName: 'ProductAccesorios';
     pluralName: 'products';
     singularName: 'product';
   };
@@ -453,6 +511,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'api::departamento.departamento'
     >;
     description: Schema.Attribute.Text;
+    estilo: Schema.Attribute.Enumeration<['Alambrismo', 'Tejido', 'Playero']>;
+    genero: Schema.Attribute.Relation<'oneToOne', 'api::genero.genero'>;
     images: Schema.Attribute.Media<'images' | 'videos', true>;
     isFeatured: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -461,6 +521,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'api::product.product'
     > &
       Schema.Attribute.Private;
+    marca: Schema.Attribute.Relation<'oneToOne', 'api::marca.marca'>;
     price: Schema.Attribute.Decimal;
     productName: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
@@ -979,6 +1040,8 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::category.category': ApiCategoryCategory;
       'api::departamento.departamento': ApiDepartamentoDepartamento;
+      'api::genero.genero': ApiGeneroGenero;
+      'api::marca.marca': ApiMarcaMarca;
       'api::product.product': ApiProductProduct;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

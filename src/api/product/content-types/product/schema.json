@@ -4,7 +4,7 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "Product",
+    "displayName": "ProductAccesorios",
     "description": ""
   },
   "options": {
@@ -57,6 +57,24 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::category.category"
+    },
+    "marca": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::marca.marca"
+    },
+    "genero": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::genero.genero"
+    },
+    "estilo": {
+      "type": "enumeration",
+      "enum": [
+        "Alambrismo",
+        "Tejido",
+        "Playero"
+      ]
     }
   }
 }
