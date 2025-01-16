@@ -2,7 +2,15 @@ export default [
   'strapi::logger',
   'strapi::errors',
   'strapi::security',
-  'strapi::cors',
+  {
+    name: 'strapi::cors',
+    config: {
+      origin: ['https://ecommerce-sochi-hoh77pfqx-jans-projects-1728c8f7.vercel.app'], // Agrega tu URL de frontend
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+      headers: ['Content-Type', 'Authorization'], // Encabezados permitidos
+      credentials: true, // Si es necesario enviar cookies o credenciales
+    },
+  },
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
@@ -10,3 +18,4 @@ export default [
   'strapi::favicon',
   'strapi::public',
 ];
+
