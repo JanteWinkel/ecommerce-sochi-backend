@@ -5,7 +5,7 @@ export default [
   {
     name: 'strapi::cors',
     config: {
-      origin: ['https://ecommerce-sochi-hoh77pfqx-jans-projects-1728c8f7.vercel.app'], // Agrega tu URL de frontend
+      origin: ['https://ecommerce-sochi.vercel.app'], // Agrega tu URL de frontend
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
       headers: ['Content-Type', 'Authorization'], // Encabezados permitidos
       credentials: true, // Si es necesario enviar cookies o credenciales
@@ -18,4 +18,3 @@ export default [
   'strapi::favicon',
   'strapi::public',
 ];
-
